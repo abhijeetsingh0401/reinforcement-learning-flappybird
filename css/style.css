@@ -1,99 +1,108 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
 
 * {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Play', sans-serif;
 }
 
+#title h1 {
+  text-align: center;
+  font-size: 54px;
+  font-weight: bold;
+  
+}
+
+@keyframes moveBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 html, body {
-  margin : 0px;
-  height : 100%;
-  padding: 30px; 
-  background: #eee;
+  margin: 0;
+  height: 100%;
+  background: white;
+  animation: backgroundAnimation 10s infinite alternate ease-in-out;
 }
 
+@keyframes backgroundAnimation {
+  0% {
+    background-color: #ffffff;
+  }
+  50% {
+    background-color: #f0f0f0;
+  }
+  100% {
+    background-color: #ffffff;
+  }
+}
 #wrapper {
   padding: 10px;
 }
 
 #content {
-  float: left;
-  background-color: #CCF;
-}
-#sidebar {
-  float: right;
-  width: 50%;
-  padding: 30px;
-  background-color: #CCF;
-}
-#cleared {
-  clear: both;
+
+  text-align: center;
 }
 
-html{
+#slider {
+  margin-top: 20px;
+  text-align: center;
+  width: 90%; /* Increased width of the slider container */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+html {
   font-size: 62.5%;
 }
 
-h1{
+h1 {
   font-size: 3rem;
 }
-h2{
-  font-size: 1.6rem;
-}
-form{
-  font-size: 1.4rem; 
+
+form {
+  font-size: 3rem; 
   color: #222;
 }
-
-form .field-group{
+.fgroup{
   display: flex; 
+  font-size: 3rem; 
+  margin-top: 8px;
+  justify-content: center;
+}
+form .field-group {
+  display: flex; 
+  font-size: 3rem; 
+  justify-content: center;
   margin: 0 0 12px 0;
 }
-form .field-group .label{
-  flex: 1; 
+
+form .field-group .label {
   text-align: right; 
   margin: 0 8px 0 0;
   padding: 2px 0;
+  font-size: 3rem;
 }
-form .field-group .field{
-  flex: 3;
+
+form .field-group .field {
+  flex: 0;
 }
-form .field-group:last-child{
-  display: flex;
-  justify-content: flex-end;
-}
-form .field-group:last-child .field{
-  max-width: 80%;
-}
-input, select, textarea{
+
+input {
   padding: .6rem 1rem; 
   font-size: 1.6rem; 
   border: solid 1px #eee;
   background: #fff; 
   box-sizing: border-box;
 }
-textarea {
-  width: 100%;  
-}
-input, select{
-  width: 50%;
-}
-input[type="radio"],
-input[type="checkbox"],
-input[type="submit"] {
-  width: auto;
-}
 
-input[type="button"] {
-  width: 250px;
-}
-
-.number {
-  display: inline;
-  margin-right: 5px;
-  font-size: 80%;
-  background-color: rgb(0,200,200);
-  color: white;
-  font-weight: bold;
-  padding: 3px 8px;
-  border-radius: 3px;
+input[type="range"] {
+  width: 100%; /* Made the slider full width of its container */
+  height: 30px; /* Increased the height for a thicker slider */
+  cursor: pointer;
 }

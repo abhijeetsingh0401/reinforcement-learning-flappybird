@@ -53,7 +53,7 @@ var HOME = 0, GAME = 1, GAME_OVER = 2, HI_SCORE = 3;
 function initGame(){
     canvas = document.getElementById("gameCanvas");
     context = canvas.getContext("2d");
-    scale = 12;
+    scale = 20;
     canvas.width = scale * 32;
     canvas.height = scale * 32;
     canvas.style.left = window.innerWidth / 2 - (scale * 32) / 2 + "px";
@@ -61,7 +61,7 @@ function initGame(){
     window.addEventListener( "keydown", handleUserInteraction, false );
     canvas.addEventListener('touchstart', handleUserInteraction, false);
     canvas.addEventListener('mousedown', handleUserInteraction, false);
-    collisionCanvas.width = birdX + 8;
+    collisionCanvas.width = birdX +8
     collisionCanvas.height = 32;
     collisionContext = collisionCanvas.getContext("2d");
     collisionContext.globalCompositeOperation = "xor";
