@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IBYP AI Literacy Programme</title>
+    <title>Flappy to Fly</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
         body, html {
@@ -32,10 +32,11 @@
             color: #004c4c;
             margin-bottom: 0.5rem;
         }
-        h2 {
-          font-size: 32px;
+        h2, p
+        {font-size: 32px;
             color: #333;
             margin-bottom: 1.5rem;
+            text-align: left;
         }
         button {
             background-color: #004c4c;
@@ -54,14 +55,29 @@
 </head>
 <body>
     <div class="container">
-        <img src="./images/logo.png" alt="IBYP Logo" class="logo">
-        <h1>IBYP AI Literacy Programme</h1>
-        <h2>Activity: Flappy Bird</h2>
-        <button onclick="playGame()">Play Game</button>
+        <h1>Flappy to Fly</h1>
+        <div class="gif-container">
+            <img src="https://img.itch.zone/aW1nLzc5OTg3OTQuZ2lm/original/85XVDm.gif" alt="Flappy Bird GIF">
+        </div>
+        <p>
+            From nest to sky, Flappy's journey begins with a leap of faith
+            Learn to flap, soar, and navigate as flappy master the art of fly
+        </p>
+        <button onclick="startFlying()">Start Flying!</button>
     </div>
+
+    <audio id="backgroundMusic" loop>
+        <source src="https://example.com/path/to/your/music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <script>
-        function playGame() {
-            window.location.href = "story.html";
+        function startFlying() {
+            const music = document.getElementById('backgroundMusic');
+            music.play();
+            setTimeout(() => {
+                window.location.href = "start.html";
+            }, 1000);
         }
     </script>
 </body>

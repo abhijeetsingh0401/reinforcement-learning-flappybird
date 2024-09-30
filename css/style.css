@@ -22,13 +22,15 @@
     background-position: 0% 50%;
   }
 }
-html, body {
-  margin: 0;
-  height: 100%;
-  background: white;
-  animation: backgroundAnimation 10s infinite alternate ease-in-out;
-}
-
+     body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Play', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #ead019, #5ccc79);
+        }
 @keyframes backgroundAnimation {
   0% {
     background-color: #ffffff;
