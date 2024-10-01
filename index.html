@@ -33,9 +33,14 @@
             margin-bottom: 0.5rem;
         }
         h2 {
-          font-size: 32px;
+            font-size: 32px;
             color: #333;
             margin-bottom: 1.5rem;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
         button {
             background-color: #004c4c;
@@ -50,6 +55,48 @@
         button:hover {
             background-color: #006666;
         }
+        /* Popup Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            text-align: left;
+            border-radius: 10px;
+            font-size: 24px;
+        }
+        .close-btn {
+            background-color: #48a9a6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .close-btn:hover {
+            background-color: #3c8f8b;
+        }
+        .popup-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
@@ -57,11 +104,50 @@
         <img src="./images/logo.png" alt="IBYP Logo" class="logo">
         <h1>IBPYP AI Literacy Programme</h1>
         <h2>Activity: Flappy Bird</h2>
-        <button onclick="playGame()">Play Game</button>
+        <div class="button-container">
+            <button onclick="playGame()">Play Game</button>
+            <button onclick="showLearningOutcome()">Learning Outcome</button>
+        </div>
     </div>
+    
+    <audio id="backgroundMusic" loop>
+        <source src="https://cdn.pixabay.com/audio/2022/03/10/audio_92b55cff90.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Learning Outcome Modal -->
+    <div id="learningOutcomeModal" class="modal">
+        <div class="modal-content">
+            <p><strong>Interactive AI-Based Game</strong></p>
+            <p>This game helps kids understand how AI can learn through practice, just like we do! By playing Flappy Bird, kids can develop quick reflexes and learn about reinforcement learning. Each time you play, the game and the player both get better at making smart decisions!</p>
+            <img src="https://img.itch.zone/aW1nLzc5OTg3OTQuZ2lm/original/85XVDm.gif" alt="Flappy Bird Image" class="popup-image">
+            <button class="close-btn" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
     <script>
         function playGame() {
-            window.location.href = "story.html";
+            const music = document.getElementById('backgroundMusic');
+            music.play();
+            setTimeout(() => {
+                window.location.href = "story.html";
+            }, 1000);
+        }
+
+        function showLearningOutcome() {
+       document.getElementById('learningOutcomeModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('learningOutcomeModal').style.display = 'none';
+        }
+
+        // Close the modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('learningOutcomeModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
         }
     </script>
 </body>

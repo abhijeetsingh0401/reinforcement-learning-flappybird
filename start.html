@@ -14,15 +14,15 @@
         flex-direction: column;
         gap: 20px;
       }
-    
+
       p {
         font-size: 24px;
       }
-    
+
       .popup {
         position: relative;
-        width: 50px;
-        height: 50px;
+        width: 80px;
+        height: 80px;
         background-color: #f0f0f0;
         border-radius: 50%;
         display: flex;
@@ -30,16 +30,17 @@
         justify-content: center;
         cursor: pointer;
       }
-    
+
       .popup.deactivated {
-        background-color: transparent;
+        background-color: gray;
+        pointer-events: none;
       }
-    
+
       .popup-text {
         visibility: hidden;
         width: 240px;
-        background-color: #555;
-        color: #fff;
+        background-color: #fff;
+        color: #000;
         text-align: center;
         border-radius: 6px;
         padding: 5px;
@@ -49,30 +50,30 @@
         opacity: 0;
         transition: opacity 0.3s;
       }
-    
+
       .popup:hover .popup-text {
         visibility: visible;
         opacity: 1;
       }
-    
+
       .popup img {
         width: 100%;
         height: auto;
         border-radius: 50%;
       }
-    
+
       /* Popup modal styles */
       .modal {
         display: none;
         position: fixed;
         z-index: 999;
+        border-radius: 6px;
         left: 0;
         top: 0;
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.5);
       }
-    
       .modal-content {
         background-color: #fefefe;
         margin: 15% auto;
@@ -80,67 +81,100 @@
         border: 1px solid #888;
         width: 80%;
         max-width: 400px;
-        text-align: center;
-        font-size: 24px; /* Set Game Over text size to 24px */
+        text-align: left;
+        font-size: 24px;
       }
-    
       .close-btn {
         background-color: red;
         color: white;
         border: none;
         padding: 10px 20px;
         cursor: pointer;
-        font-size: 24px; /* Set close button font size to 24px */
+        font-size: 24px;
       }
-    
+
       button {
         background-color: #004c4c;
         color: white;
         border: none;
         padding: 10px 20px;
-        font-size: 24px; /* Set button font size to 24px */
+        font-size: 24px;
         cursor: pointer;
         transition: background-color 0.3s;
         border-radius: 5px;
       }
-    
+
       button:hover {
         background-color: #006666;
       }
-    
+
+      .game-stats {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        font-size: 24px;
+        align-items: center; /* Ensure game speed and range are aligned */
+      }
+
+      .stat-item {
+        display: flex;
+        align-items: center;
+      }
+
+      .stat-label {
+        margin-right: 10px;
+        white-space: nowrap; /* Prevent text from wrapping */
+      }
+
       /* Game Speed */
       label[for="game-speed"] {
-        font-size: 32px; /* Set game speed label font size to 24px */
+        font-size: 32px;
       }
     </style>
-    
   </head>
   <body>
     <div class="popup-container">
       <div class="popup" id="popup1">
-        <img src="./badges/creativity.png" alt="Image 1">
-        <span class="popup-text">Creativity</span>
+        <img src="./badges/creativity.png" alt="Creativity">
+        <span class="popup-text">
+          <strong>Creativity in Flappy Bird</strong><br>
+          Explore creative strategies to navigate through pipes. Each playthrough is unique, requiring adaptive thinking and innovative approaches to achieve higher scores.
+        </span>
       </div>
       <div class="popup" id="popup2">
-        <img src="./badges/ethics.png" alt="Image 2">
-        <span class="popup-text">Ethics</span>
+        <img src="./badges/ethics.png" alt="Ethics">
+        <span class="popup-text">
+          <strong>Ethics in Gaming</strong><br>
+          Learn about fair play, persistence, and the value of practice. The game teaches that success comes through dedication and continuous improvement, not shortcuts.
+        </span>
       </div>
       <div class="popup" id="popup3">
-        <img src="./badges/intelligence.png" alt="Image 3">
-        <span class="popup-text">Intelligence</span>
+        <img src="./badges/intelligence.png" alt="Intelligence">
+        <span class="popup-text">
+          <strong>Intelligence Training</strong><br>
+          Develop quick reflexes, pattern recognition, and decision-making skills. The game challenges your spatial awareness and ability to predict obstacle patterns.
+        </span>
       </div>
-      <div class="popup" id="popup4">
-        <img src="./badges/lifeskills.png" alt="Image 4">
-        <span class="popup-text">Lifeskills</span>
+      <div class="popup deactivated" id="popup4">
+        <img src="./badges/lifeskills.png" alt="Lifeskills">
       </div>
-      <div class="popup" id="popup5">
-        <img src="./badges/sdg.png" alt="Image 4">
-        <span class="popup-text">Sdg</span>
+      <div class="popup deactivated" id="popup5">
+        <img src="./badges/sdg.png" alt="SDG">
       </div>
     </div>
     <div id="wrapper">
       <div id="title">
         <h1>Let's Play Game</h1>
+      </div>
+      <div class="game-stats">
+        <div class="stat-item">
+          <span class="stat-label">Game Speed:</span>
+          <input name="tel1" id="tel1" type="range" value="5" onchange="gameSpeedChange(this.value)">
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Trials:</span>
+          <span id="trials" class="number">0</span>
+        </div>
       </div>
       <div id="content">
         <canvas id="gameCanvas" width="32" height="32"></canvas>
@@ -148,13 +182,14 @@
       <div id="sidebar">
         <form action="#">
           <!-- Game Speed -->
+          <div style="display: none;">
           <div class="fgroup">
             <label for="game-speed" class="label">Game speed:</label>
             <div class="field">
-              <input name="tel1" id="tel1" type="range" value="40" onchange="gameSpeedChange(this.value)">
+              <input name="tel1" id="tel1" type="range" value="5" onchange="gameSpeedChange(this.value)">
             </div>
           </div>
-          
+        </div>
           <!-- Conclusion Button -->
           <div class="fgroup button">
             <button type="button" value="Conclusion" onclick="openModal()">Conclusion</button>
@@ -234,7 +269,9 @@
     <!-- Modal -->
     <div id="conclusionModal" class="modal">
       <div class="modal-content">
-        <p>Game Over</p>
+        <p>Great job playing the game! Just like in school, we learn by trying again and again. 
+          When you play, the game learns too! Every time you play, it gets better at understanding what to do next. This is called "learning by practice," just like how we learn new things by practicing. 
+          Keep playing, and soon you'll see how smart the game can get—just like you!</p>
         <button class="close-btn" onclick="closeModal()">Close</button>
       </div>
     </div>
